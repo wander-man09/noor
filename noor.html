@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Noor — Financial Clarity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="noor.css">
+</head>
+<body>
+
+<!-- ════════════════════════════════════════
+     LAYER: API KEY
+════════════════════════════════════════ -->
+<div id="layer-key" style="display:none">
+  <div class="key-card">
+    <div class="key-logo">NOOR</div>
+    <div class="key-title">Enter your API key</div>
+    <div class="key-sub">
+      Noor uses OpenRouter to power real financial conversations via a free Llama model. Paste your OpenRouter API key below — it lives in your browser session only.<br><br>
+      <a href="https://openrouter.ai/keys" target="_blank">Get a free key at openrouter.ai &rarr;</a>
+    </div>
+    <div class="key-input-wrap">
+      <input type="password" class="key-input" id="api-key-input" placeholder="sk-or-&hellip;" autocomplete="off">
+      <button class="key-btn" onclick="submitKey()">Save &amp; Continue</button>
+    </div>
+    <div class="key-note">Stored in sessionStorage — cleared when you close this tab. To persist it across sessions, add it to your .env file as OPENROUTER_API_KEY.</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     LAYER: ONBOARDING
+════════════════════════════════════════ -->
+<div id="layer-onboard">
+  <div class="ob-wordmark">NOOR</div>
+
+  <div class="ob-hero">
+    <h1>Your personal<br><em>financial clarity.</em></h1>
+    <p>Six intelligent modes — one unified conversation. Noor knows your full financial picture and meets you wherever you are.</p>
+  </div>
+
+  <div class="ob-cards">
+
+    <!-- Goal Coach -->
+    <div class="ob-card" onclick="enterApp('goal')">
+      <div class="ob-card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <circle cx="12" cy="12" r="6"/>
+          <circle cx="12" cy="12" r="2"/>
+          <line x1="12" y1="2" x2="12" y2="4"/>
+          <line x1="12" y1="20" x2="12" y2="22"/>
+          <line x1="2" y1="12" x2="4" y2="12"/>
+          <line x1="20" y1="12" x2="22" y2="12"/>
+        </svg>
+      </div>
+      <div class="ob-card-label">Mode 01</div>
+      <div class="ob-card-title">Goal Coach</div>
+      <div class="ob-card-desc">Your financial home base. Track savings goals, monitor spending, and get proactive nudges — before you overspend, not after.</div>
+      <div class="ob-card-cta">
+        Open Goal Coach
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+    </div>
+
+    <!-- Budget Builder -->
+    <div class="ob-card" onclick="enterApp('build')">
+      <div class="ob-card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+          <polyline points="2 17 12 22 22 17"/>
+          <polyline points="2 12 12 17 22 12"/>
+        </svg>
+      </div>
+      <div class="ob-card-label">Mode 02</div>
+      <div class="ob-card-title">Budget Builder</div>
+      <div class="ob-card-desc">Build your budget through conversation, not forms. Tell Noor about your life and it structures everything — income, fixed costs, goals, and flex spending.</div>
+      <div class="ob-card-cta">
+        Open Budget Builder
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+    </div>
+
+    <!-- Buy or Wait -->
+    <div class="ob-card" onclick="enterApp('buy')">
+      <div class="ob-card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="3" x2="12" y2="21"/>
+          <path d="M5 21h14"/>
+          <path d="M3 6l9-3 9 3"/>
+          <path d="M3 6c0 2.2 2 4 4.5 4S12 8.2 12 6"/>
+          <path d="M12 6c0 2.2 2 4 4.5 4S21 8.2 21 6"/>
+        </svg>
+      </div>
+      <div class="ob-card-label">Mode 03</div>
+      <div class="ob-card-title">Buy or Wait</div>
+      <div class="ob-card-desc">In-the-moment purchase advisor. Describe what you want to buy and get a straight verdict — with the math, trade-offs, and timing clearly laid out.</div>
+      <div class="ob-card-cta">
+        Open Purchase Advisor
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+    </div>
+
+    <!-- What If -->
+    <div class="ob-card" onclick="enterApp('what')">
+      <div class="ob-card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="6" y1="3" x2="6" y2="15"/>
+          <circle cx="18" cy="6" r="3"/>
+          <circle cx="6" cy="18" r="3"/>
+          <path d="M18 9a9 9 0 01-9 9"/>
+        </svg>
+      </div>
+      <div class="ob-card-label">Mode 04</div>
+      <div class="ob-card-title">What If</div>
+      <div class="ob-card-desc">Explore scenarios before committing. Model job changes, extra savings, big purchases, or life events — and see exactly what changes downstream.</div>
+      <div class="ob-card-cta">
+        Open Scenario Planner
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+    </div>
+
+    <!-- Debt Destroyer -->
+    <div class="ob-card" onclick="enterApp('debt')">
+      <div class="ob-card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+          <polyline points="17 6 23 6 23 12"/>
+        </svg>
+      </div>
+      <div class="ob-card-label">Mode 05</div>
+      <div class="ob-card-title">Debt Destroyer</div>
+      <div class="ob-card-desc">Enter your debts and get an exact payoff plan — avalanche or snowball — with a debt-freedom date and total interest saved.</div>
+      <div class="ob-card-cta">
+        Open Debt Planner
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+    </div>
+
+    <!-- Subscription Auditor -->
+    <div class="ob-card" onclick="enterApp('subs')">
+      <div class="ob-card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="8" y1="13" x2="16" y2="13"/>
+          <line x1="8" y1="17" x2="12" y2="17"/>
+        </svg>
+      </div>
+      <div class="ob-card-label">Mode 06</div>
+      <div class="ob-card-title">Subscription Auditor</div>
+      <div class="ob-card-desc">Find the subscriptions draining your budget. Paste your list, get an annual cost shock, and a cancellation priority ranking.</div>
+      <div class="ob-card-cta">
+        Open Sub Auditor
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="ob-footer">
+    <button class="ob-enter-btn" onclick="enterApp('goal')">
+      Get started
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     LAYER: APP
+════════════════════════════════════════ -->
+<div id="layer-app">
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="sb-logo">N</div>
+
+    <button class="nav-btn active" id="nav-goal" onclick="switchMode('goal')" data-tip="Goal Coach">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <circle cx="12" cy="12" r="6"/>
+        <circle cx="12" cy="12" r="2"/>
+      </svg>
+      <span class="nav-label">Goal</span>
+    </button>
+
+    <button class="nav-btn" id="nav-build" onclick="switchMode('build')" data-tip="Budget Builder">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+        <polyline points="2 17 12 22 22 17"/>
+        <polyline points="2 12 12 17 22 12"/>
+      </svg>
+      <span class="nav-label">Build</span>
+    </button>
+
+    <button class="nav-btn" id="nav-buy" onclick="switchMode('buy')" data-tip="Buy or Wait">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="3" x2="12" y2="21"/>
+        <path d="M5 21h14"/>
+        <path d="M3 6l9-3 9 3"/>
+        <path d="M3 6c0 2.2 2 4 4.5 4S12 8.2 12 6"/>
+        <path d="M12 6c0 2.2 2 4 4.5 4S21 8.2 21 6"/>
+      </svg>
+      <span class="nav-label">Buy?</span>
+    </button>
+
+    <button class="nav-btn" id="nav-what" onclick="switchMode('what')" data-tip="What If Planner">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="6" y1="3" x2="6" y2="15"/>
+        <circle cx="18" cy="6" r="3"/>
+        <circle cx="6" cy="18" r="3"/>
+        <path d="M18 9a9 9 0 01-9 9"/>
+      </svg>
+      <span class="nav-label">What If</span>
+    </button>
+
+    <button class="nav-btn" id="nav-debt" onclick="switchMode('debt')" data-tip="Debt Destroyer">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+        <polyline points="17 6 23 6 23 12"/>
+      </svg>
+      <span class="nav-label">Debt</span>
+    </button>
+
+    <button class="nav-btn" id="nav-subs" onclick="switchMode('subs')" data-tip="Subscription Auditor">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+        <polyline points="14 2 14 8 20 8"/>
+        <line x1="8" y1="13" x2="16" y2="13"/>
+        <line x1="8" y1="17" x2="12" y2="17"/>
+      </svg>
+      <span class="nav-label">Subs</span>
+    </button>
+
+    <div class="sb-divider"></div>
+
+    <button class="nav-btn" data-tip="Settings" onclick="showKeyModal()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/>
+      </svg>
+      <span class="nav-label">Key</span>
+    </button>
+
+    <div class="sb-spacer"></div>
+    <div class="sb-avatar">M</div>
+  </nav>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- CHAT PANEL -->
+    <div class="chat-panel">
+
+      <!-- Headers (one per mode) -->
+      <div class="chat-header" id="hdr-goal">
+        <div class="mode-pill"><div class="pill-dot"></div>Goal Coach</div>
+        <span class="chat-header-title">Good morning, Manish</span>
+        <span class="chat-header-meta" id="hdr-date"></span>
+      </div>
+      <div class="chat-header" id="hdr-build" style="display:none">
+        <div class="mode-pill"><div class="pill-dot"></div>Budget Builder</div>
+        <span class="chat-header-title">Build your budget</span>
+        <span class="chat-header-meta">Step 3 of 5</span>
+      </div>
+      <div class="chat-header" id="hdr-buy" style="display:none">
+        <div class="mode-pill"><div class="pill-dot"></div>Buy or Wait</div>
+        <span class="chat-header-title">Purchase Advisor</span>
+        <span class="chat-header-meta" style="font-family:var(--font-mono)">$340 discretionary left</span>
+      </div>
+      <div class="chat-header" id="hdr-what" style="display:none">
+        <div class="mode-pill"><div class="pill-dot"></div>What If</div>
+        <span class="chat-header-title">Scenario Planner</span>
+        <span class="chat-header-meta">2 saved scenarios</span>
+      </div>
+      <div class="chat-header" id="hdr-debt" style="display:none">
+        <div class="mode-pill"><div class="pill-dot"></div>Debt Destroyer</div>
+        <span class="chat-header-title">Debt Payoff Planner</span>
+        <span class="chat-header-meta" id="debt-hdr-meta">3 debts · free by 2028</span>
+      </div>
+      <div class="chat-header" id="hdr-subs" style="display:none">
+        <div class="mode-pill"><div class="pill-dot"></div>Sub Auditor</div>
+        <span class="chat-header-title">Subscription Auditor</span>
+        <span class="chat-header-meta">8 active subscriptions</span>
+      </div>
+
+      <!-- Messages area -->
+      <div class="chat-messages" id="chat-messages">
+
+        <!-- GOAL messages -->
+        <div class="msg-section visible" id="msgs-goal">
+          <div class="msg ai">
+            <div class="msg-av ai">N</div>
+            <div class="msg-bubble">
+              You're on track this month, Manish. Your emergency fund hits $5,000 in 6 weeks — two weeks ahead of schedule.
+              <div class="msg-data">
+                <div class="msg-data-label">Emergency Fund</div>
+                <div class="msg-data-val">$3,840</div>
+                <div class="msg-data-sub">of $5,000 &middot; 76.8% complete</div>
+              </div>
+            </div>
+          </div>
+          <div class="msg user">
+            <div class="msg-av user-av">M</div>
+            <div class="msg-bubble">How's my dining budget looking?</div>
+          </div>
+          <div class="msg ai">
+            <div class="msg-av ai">N</div>
+            <div class="msg-bubble">You've used $218 of $280 on dining — 78% with 10 days left. You're trending about $40 over. Want me to set an alert at $260, or would you like to move some budget from another category?</div>
+          </div>
+        </div>
+
+        <!-- BUILD messages -->
+        <div class="msg-section" id="msgs-build">
+          <div class="msg ai">
+            <div class="msg-av ai">N</div>
+            <div class="msg-bubble">Let's build your budget. Tell me your monthly take-home after tax — don't worry about being exact, we'll refine as we go.</div>
+          </div>
+          <div class="msg user">
+            <div class="msg-av user-av">M</div>
+            <div class="msg-bubble">About $5,200 a month. I also get a quarterly bonus, usually around $2,000.</div>
+          </div>
+          <div class="msg ai">
+            <div class="msg-av ai">N</div>
+            <div class="msg-bubble">
+              Noted — $5,200/mo base plus ~$667/mo from your bonus averaged out. I'll plan around your base and treat the bonus as a savings accelerator.<br><br>What are your big fixed monthly costs? Rent, car payment, loans — anything that doesn't change.
+            </div>
+          </div>
+          <div class="msg user">
+            <div class="msg-av user-av">M</div>
+            <div class="msg-bubble">$1,850 rent, $380 car payment, $200 credit card minimum.</div>
+          </div>
+          <div class="msg ai">
+            <div class="msg-av ai">N</div>
+            <div class="msg-bubble">Fixed costs: $2,430. That leaves $2,770 to allocate. Before we split that up — what's the one financial goal you most want to hit this year?</div>
+          </div>
+        </div>
+
+        <!-- BUY messages -->
+        <div class="msg-section" id="msgs-buy">
+          <div class="msg ai">
+            <div class="msg-av ai">N</div>
+            <div class="msg-bubble">What are you thinking of buying, and how much does it cost?</div>
+          </div>
+          <div class="msg user">
+            <div class="msg-av user-av">M</div>
+            <div class="msg-bubble">A Sony camera. $1,200. I've wanted it for a while.</div>
+          </div>
+          <div class="msg ai">
+            <div class="msg-av ai">N</div>
+            <div class="msg-bubble">
+              You have $340 left in discretionary this month — the camera is $860 over that. Buying now delays your emergency fund by 3 weeks and spills into next month's budget.<br><br>
+              Your next bonus lands around June. Allocating $1,200 from that keeps every goal intact and leaves you $800 from the bonus to use elsewhere. That's the cleanest path.
+            </div>
+          </div>
+          <div class="msg user">
+            <div class="msg-av user-av">M</div>
+            <div class="msg-bubble">What if I cut dining by $100 a month until then?</div>
+          </div>
+          <div class="msg ai">
+            <div class="msg-av ai">N</div>
+            <div class="msg-bubble">That gets you there in 2 months instead of waiting for the bonus. You'd give up $200 in dining flexibility over that period. Workable — but the bonus option is still cleaner since it costs you nothing day-to-day. Your call.</div>
+          </div>
+        </div>
+
+        <!-- WHAT IF messages -->
+        <div class="msg-section" id="msgs-what">
+          <div class="msg ai">
+            <div class="msg-av ai">N</div>
+            <div class="msg-bubble">What scenario do you want to explore? Try: "What if I put $300 more into retirement?", "What if I went part-time?", or "What if I lost my job tomorrow?"</div>
+          </div>
+          <div class="msg user">
+            <div class="msg-av user-av">M</div>
+            <div class="msg-bubble">What if I put an extra $300 a month into my retirement account?</div>
+          </div>
+          <div class="msg ai">
+            <div class="msg-av ai">N</div>
+            <div class="msg-bubble">
+              $300/mo extra into retirement reduces your monthly discretionary from $820 to $520. Over 20 years at 7% average growth, that extra contribution compounds to roughly $131,000 in additional retirement savings.<br><br>
+              Your emergency fund timeline slips by 7 weeks — minor. The long-term math is strongly in favor. Want to see a side-by-side with $500/mo?
+            </div>
+          </div>
+          <div class="msg user">
+            <div class="msg-av user-av">M</div>
+            <div class="msg-bubble">Yes, show me both side by side.</div>
+          </div>
+          <div class="msg ai">
+            <div class="msg-av ai">N</div>
+            <div class="msg-bubble">Both scenarios are in the panel to the right. At $500/mo your discretionary gets tight — $320/month — but the 20-year return jumps to $262,000 additional. $300/mo is the better balance for your lifestyle.</div>
+          </div>
+        </div>
+
+        <!-- DEBT messages -->
+        <div class="msg-section" id="msgs-debt">
+          <div class="msg ai">
+            <div class="msg-av ai">N</div>
+            <div class="msg-bubble">
+              I've loaded your three debts. On the <strong>avalanche strategy</strong> — highest rate first — you'll be debt-free by <strong>March 2028</strong> and save $1,840 in interest vs. minimums only.<br><br>
+              Want me to walk through the plan, or do you have an extra amount you can throw at it each month?
+            </div>
+          </div>
+          <div class="msg user">
+            <div class="msg-av user-av">M</div>
+            <div class="msg-bubble">What if I put an extra $200 a month toward debt?</div>
+          </div>
+          <div class="msg ai">
+            <div class="msg-av ai">N</div>
+            <div class="msg-bubble">
+              With $200 extra per month on the avalanche plan, you'd be debt-free by <strong>August 2027</strong> — 7 months sooner — and save an additional $620 in interest. The credit card clears first in 4 months, then that payment waterfalls to the car loan.
+              <div class="msg-data">
+                <div class="msg-data-label">New Freedom Date</div>
+                <div class="msg-data-val">Aug 2027</div>
+                <div class="msg-data-sub">vs. Mar 2028 without extra · saves $620 more</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUBS messages -->
+        <div class="msg-section" id="msgs-subs">
+          <div class="msg ai">
+            <div class="msg-av ai">N</div>
+            <div class="msg-bubble">
+              List your subscriptions — name and cost. Type them however feels natural, one line or all at once. I'll do the parsing.
+            </div>
+          </div>
+          <div class="msg user">
+            <div class="msg-av user-av">M</div>
+            <div class="msg-bubble">Netflix $15.49, Spotify $10.99, Adobe CC $54.99, iCloud $2.99, gym $49.99, Hulu $17.99, ChatGPT $20, LinkedIn Premium $39.99</div>
+          </div>
+          <div class="msg ai">
+            <div class="msg-av ai">N</div>
+            <div class="msg-bubble">
+              Found 8 subscriptions. Total: $212.43/mo &middot; $2,549/yr.<br><br>
+              Three to scrutinize: Adobe CC ($54.99) is your largest — worth it only if you use it weekly. LinkedIn Premium ($39.99) has the worst ROI unless you're actively job hunting. Gym at $49.99 is high if attendance is irregular.<br><br>
+              Cancellation priority: LinkedIn &rarr; Adobe &rarr; Hulu (overlaps Netflix). Anything I missed?
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /chat-messages -->
+
+      <!-- Suggestions -->
+      <div class="suggestions" id="sug-goal">
+        <button class="sug-chip" onclick="fillInput(this)">How much have I saved this year?</button>
+        <button class="sug-chip" onclick="fillInput(this)">Adjust my savings rate</button>
+        <button class="sug-chip" onclick="fillInput(this)">Show my goal timeline</button>
+      </div>
+      <div class="suggestions" id="sug-build" style="display:none">
+        <button class="sug-chip" onclick="fillInput(this)">Add a subscription</button>
+        <button class="sug-chip" onclick="fillInput(this)">I just changed jobs</button>
+        <button class="sug-chip" onclick="fillInput(this)">Start over from scratch</button>
+      </div>
+      <div class="suggestions" id="sug-buy" style="display:none">
+        <button class="sug-chip" onclick="fillInput(this)">What about something for $500?</button>
+        <button class="sug-chip" onclick="fillInput(this)">Log this purchase</button>
+        <button class="sug-chip" onclick="fillInput(this)">Is it ever a good time to splurge?</button>
+      </div>
+      <div class="suggestions" id="sug-what" style="display:none">
+        <button class="sug-chip" onclick="fillInput(this)">What if I lost my job tomorrow?</button>
+        <button class="sug-chip" onclick="fillInput(this)">Save this scenario</button>
+        <button class="sug-chip" onclick="fillInput(this)">Make this my new budget</button>
+      </div>
+      <div class="suggestions" id="sug-debt" style="display:none">
+        <button class="sug-chip" onclick="fillInput(this)">Switch to snowball strategy</button>
+        <button class="sug-chip" onclick="fillInput(this)">What if I add $300/mo extra?</button>
+        <button class="sug-chip" onclick="fillInput(this)">How much interest will I pay total?</button>
+      </div>
+      <div class="suggestions" id="sug-subs" style="display:none">
+        <button class="sug-chip" onclick="fillInput(this)">What should I cancel first?</button>
+        <button class="sug-chip" onclick="fillInput(this)">Add Amazon Prime $14.99</button>
+        <button class="sug-chip" onclick="fillInput(this)">Show my annual total</button>
+      </div>
+
+      <!-- Input -->
+      <div class="chat-input-area">
+        <div class="input-wrap">
+          <textarea class="chat-textarea" id="chat-input" placeholder="Ask Noor anything about your finances&hellip;" rows="1"
+            onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+          <button class="send-btn" onclick="sendMessage()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+          </button>
+        </div>
+      </div>
+
+    </div><!-- /chat-panel -->
+
+    <!-- DATA PANEL -->
+    <div class="data-panel" id="data-panel">
+
+      <!-- ── GOAL DATA ── -->
+      <div class="mode-section visible" id="dp-goal">
+
+        <div class="dp-section">
+          <div class="dp-label">Budget Health</div>
+          <div class="health-wrap">
+            <svg width="62" height="62" viewBox="0 0 62 62" style="flex-shrink:0">
+              <circle cx="31" cy="31" r="24" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="7"/>
+              <circle cx="31" cy="31" r="24" fill="none" stroke="#00e5a0" stroke-width="7"
+                stroke-dasharray="150.8" stroke-dashoffset="30.16"
+                stroke-linecap="round" transform="rotate(-90 31 31)"/>
+            </svg>
+            <div class="health-meta">
+              <div class="h-score">80</div>
+              <div class="h-lbl">/ 100 health score</div>
+              <div class="h-note">Solid. Dining slightly tight, all goals on track.</div>
+            </div>
+          </div>
+          <div class="stat-grid">
+            <div class="stat-card">
+              <div class="sc-label">Take-Home</div>
+              <div class="sc-val">$5,200</div>
+              <div class="sc-sub">/ month</div>
+            </div>
+            <div class="stat-card">
+              <div class="sc-label">Left to Spend</div>
+              <div class="sc-val pos">$1,247</div>
+              <div class="sc-sub">10 days remain</div>
+            </div>
+            <div class="stat-card">
+              <div class="sc-label">Saved MTD</div>
+              <div class="sc-val pos">$680</div>
+              <div class="sc-sub">+$40 ahead of plan</div>
+            </div>
+            <div class="stat-card">
+              <div class="sc-label">Net Worth &Delta;</div>
+              <div class="sc-val pos">+$820</div>
+              <div class="sc-sub">this month</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dp-section">
+          <div class="dp-label">Active Goals</div>
+          <div class="goal-card">
+            <div class="gc-top">
+              <div class="gc-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div>
+                <div class="gc-title">Emergency Fund</div>
+                <div class="gc-eta">~6 weeks to completion</div>
+              </div>
+            </div>
+            <div class="gc-amounts">
+              <div class="gc-current">$3,840</div>
+              <div class="gc-target">of $5,000</div>
+            </div>
+            <div class="prog-track"><div class="prog-fill" style="width:76.8%"></div></div>
+          </div>
+          <div class="goal-card">
+            <div class="gc-top">
+              <div class="gc-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14z"/></svg>
+              </div>
+              <div>
+                <div class="gc-title">Japan Trip</div>
+                <div class="gc-eta">~5 months to completion</div>
+              </div>
+            </div>
+            <div class="gc-amounts">
+              <div class="gc-current">$820</div>
+              <div class="gc-target">of $3,500</div>
+            </div>
+            <div class="prog-track"><div class="prog-fill" style="width:23.4%"></div></div>
+          </div>
+        </div>
+
+        <div class="dp-section">
+          <div class="dp-label">Spending This Month</div>
+          <div class="prog-list">
+            <div class="prog-item">
+              <div class="prog-head"><span class="prog-name">Housing</span><span class="prog-nums">$1,850 / $1,850</span></div>
+              <div class="prog-track"><div class="prog-fill" style="width:100%;background:var(--text-muted)"></div></div>
+            </div>
+            <div class="prog-item">
+              <div class="prog-head"><span class="prog-name">Dining</span><span class="prog-nums">$218 / $280</span></div>
+              <div class="prog-track"><div class="prog-fill warn-fill" style="width:78%"></div></div>
+            </div>
+            <div class="prog-item">
+              <div class="prog-head">
+                <span class="prog-name">Groceries</span>
+                <div style="display:flex;align-items:center;gap:8px">
+                  <span class="prog-nums">$290 / $400</span>
+                  <button class="waste-log-trigger" onclick="openWasteLog()" id="waste-log-trigger">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg>
+                    Log waste
+                  </button>
+                </div>
+              </div>
+              <div class="prog-track"><div class="prog-fill" style="width:72.5%"></div></div>
+              <div class="waste-inline-stat" id="waste-inline-stat" style="display:none">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg>
+                <span id="waste-inline-text">$0 wasted this month</span>
+              </div>
+            </div>
+            <div class="prog-item">
+              <div class="prog-head"><span class="prog-name">Transport</span><span class="prog-nums">$380 / $480</span></div>
+              <div class="prog-track"><div class="prog-fill" style="width:79.2%"></div></div>
+            </div>
+            <div class="prog-item">
+              <div class="prog-head"><span class="prog-name">Entertainment</span><span class="prog-nums">$48 / $110</span></div>
+              <div class="prog-track"><div class="prog-fill" style="width:43.6%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dp-section">
+          <div class="dp-label">30-Day Spending Timeline</div>
+          <div class="sparkline-wrap">
+            <div class="sparkline-header">
+              <span class="sparkline-title">Daily cumulative spend</span>
+              <div class="sparkline-tabs">
+                <button class="spark-tab active" onclick="switchSparkline('dining',this)">Dining</button>
+                <button class="spark-tab" onclick="switchSparkline('groceries',this)">Grocery</button>
+                <button class="spark-tab" onclick="switchSparkline('all',this)">All</button>
+              </div>
+            </div>
+            <div class="sparkline-canvas-wrap">
+              <canvas id="sparkline-canvas" width="300" height="80"></canvas>
+            </div>
+            <div class="sparkline-footer">
+              <div class="spark-foot-item">
+                <div class="spark-foot-val warn" id="spark-current">$218</div>
+                <div class="spark-foot-lbl">spent</div>
+              </div>
+              <div class="spark-foot-item">
+                <div class="spark-foot-val" id="spark-budget">$280</div>
+                <div class="spark-foot-lbl">budget</div>
+              </div>
+              <div class="spark-foot-item">
+                <div class="spark-foot-val" id="spark-pace">$7.9/d</div>
+                <div class="spark-foot-lbl">daily pace</div>
+              </div>
+              <div class="spark-foot-item">
+                <div class="spark-foot-val warn" id="spark-projected">$297</div>
+                <div class="spark-foot-lbl">projected</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dp-section">
+          <div class="dp-label">Nudges</div>
+          <div class="nudge n-warn">
+            <svg class="nudge-ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            Dining at 78% with 10 days left. Trending $40 over budget.
+          </div>
+          <div class="nudge n-ok">
+            <svg class="nudge-ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Emergency fund 2 weeks ahead of schedule.
+          </div>
+          <div class="nudge n-info">
+            <svg class="nudge-ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Bonus due ~June. Consider earmarking $500 for Japan trip.
+          </div>
+        </div>
+
+        <!-- Waste tracker section -->
+        <div class="dp-section" id="waste-history-section" style="display:none">
+          <div class="dp-label" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+            <span>Pantry Waste This Month</span>
+            <button class="waste-log-trigger" onclick="openWasteLog()" style="opacity:0.7">+ Log more</button>
+          </div>
+          <div class="waste-summary-card" id="waste-summary-card">
+            <!-- rendered by JS -->
+          </div>
+          <div id="waste-log-list" style="margin-top:10px">
+            <!-- rendered by JS -->
+          </div>
+        </div>
+
+      </div><!-- /dp-goal -->
+
+      <!-- ── BUILD DATA ── -->
+      <div class="mode-section" id="dp-build">
+        <div class="dp-section">
+          <div class="dp-label">Setup Progress</div>
+          <div class="step-list">
+            <div class="step-item step-done">
+              <div class="step-head">
+                <div class="step-num">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <div class="step-title">Income confirmed</div>
+              </div>
+              <div class="step-body">
+                <div class="budget-row"><span class="br-cat">Base salary</span><span class="br-amt">$5,200 / mo</span></div>
+                <div class="budget-row"><span class="br-cat">Bonus (averaged)</span><span class="br-amt">$667 / mo</span></div>
+              </div>
+            </div>
+            <div class="step-item step-done">
+              <div class="step-head">
+                <div class="step-num">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <div class="step-title">Fixed costs locked</div>
+              </div>
+              <div class="step-body">
+                <div class="budget-row"><span class="br-cat">Rent</span><span class="br-amt">$1,850</span></div>
+                <div class="budget-row"><span class="br-cat">Car payment</span><span class="br-amt">$380</span></div>
+                <div class="budget-row"><span class="br-cat">Credit card min.</span><span class="br-amt">$200</span></div>
+              </div>
+            </div>
+            <div class="step-item step-active">
+              <div class="step-head">
+                <div class="step-num">3</div>
+                <div class="step-title">Savings goals — in progress</div>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-head">
+                <div class="step-num">4</div>
+                <div class="step-title">Variable spending categories</div>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-head">
+                <div class="step-num">5</div>
+                <div class="step-title">Review and confirm</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dp-section">
+          <div class="dp-label">Remaining to Allocate</div>
+          <!-- Waste callout — shown when waste data exists -->
+          <div class="waste-build-callout" id="waste-build-callout" style="display:none">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg>
+            <span id="waste-build-callout-text">You wasted ~$0 on groceries last month. Factor that in when setting your food budget.</span>
+          </div>
+          <div class="stat-grid">
+            <div class="stat-card" style="grid-column:span 2">
+              <div class="sc-label">Unallocated after fixed costs</div>
+              <div class="sc-val pos" style="font-size:26px">$2,770</div>
+              <div class="sc-sub">per month &middot; ready to assign</div>
+            </div>
+          </div>
+          <div class="donut-wrap">
+            <div class="donut-rel">
+              <svg width="66" height="66" viewBox="0 0 66 66">
+                <circle cx="33" cy="33" r="26" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="10"/>
+                <circle cx="33" cy="33" r="26" fill="none" stroke="#00e5a0" stroke-width="10"
+                  stroke-dasharray="163.4" stroke-dashoffset="130.7" stroke-linecap="butt" transform="rotate(-90 33 33)"/>
+                <circle cx="33" cy="33" r="26" fill="none" stroke="rgba(0,229,160,0.4)" stroke-width="10"
+                  stroke-dasharray="163.4" stroke-dashoffset="97.7" stroke-linecap="butt" transform="rotate(-18 33 33)"/>
+                <circle cx="33" cy="33" r="26" fill="none" stroke="rgba(0,229,160,0.2)" stroke-width="10"
+                  stroke-dasharray="163.4" stroke-dashoffset="0" stroke-linecap="butt" transform="rotate(42 33 33)"/>
+              </svg>
+              <div class="donut-inner">
+                <div class="donut-inner-val">$2,770</div>
+                <div class="donut-inner-sub">total</div>
+              </div>
+            </div>
+            <div class="legend">
+              <div class="leg-item"><div class="leg-dot" style="background:var(--accent)"></div>Savings / Goals<span class="leg-val">$554</span></div>
+              <div class="leg-item"><div class="leg-dot" style="background:rgba(0,229,160,0.4)"></div>Food &amp; Dining<span class="leg-val">$387</span></div>
+              <div class="leg-item"><div class="leg-dot" style="background:rgba(0,229,160,0.2)"></div>Everything else<span class="leg-val">$1,829</span></div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /dp-build -->
+
+      <!-- ── BUY DATA ── -->
+      <div class="mode-section" id="dp-buy">
+        <div class="dp-section">
+          <div class="dp-label">Sony Camera &middot; $1,200</div>
+          <div class="verdict wait">
+            <div class="verdict-title">Wait for the bonus.</div>
+            <div class="verdict-body">Your next bonus (~$2,000) arrives in June. Allocating $1,200 from it keeps all goals intact with $800 remaining.</div>
+          </div>
+          <div class="stat-grid">
+            <div class="stat-card">
+              <div class="sc-label">Discretionary left</div>
+              <div class="sc-val warn">$340</div>
+              <div class="sc-sub">this month</div>
+            </div>
+            <div class="stat-card">
+              <div class="sc-label">Overage if now</div>
+              <div class="sc-val neg">$860</div>
+              <div class="sc-sub">over budget</div>
+            </div>
+            <div class="stat-card">
+              <div class="sc-label">Goal delay if now</div>
+              <div class="sc-val warn">3 wk</div>
+              <div class="sc-sub">emergency fund</div>
+            </div>
+            <div class="stat-card">
+              <div class="sc-label">Recommended</div>
+              <div class="sc-val pos">June</div>
+              <div class="sc-sub">bonus month</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dp-section">
+          <div class="dp-label">Your Options</div>
+          <div class="timeline">
+            <div class="tl-row">
+              <div class="tl-lbl">Option A — Buy now</div>
+              <div class="tl-val neg">$860 over budget</div>
+              <div class="tl-sub">Emergency fund delayed 3 weeks</div>
+            </div>
+            <div class="tl-row">
+              <div class="tl-lbl">Option B — Save for 3 months</div>
+              <div class="tl-val">Fully affordable in July</div>
+              <div class="tl-sub">Save $400/mo discretionary</div>
+            </div>
+            <div class="tl-row tl-active">
+              <div class="tl-lbl">Option C — Use June bonus</div>
+              <div class="tl-val pos">Recommended</div>
+              <div class="tl-sub">Goals intact &middot; $800 bonus remaining</div>
+            </div>
+            <div class="tl-row">
+              <div class="tl-lbl">Option D — Cut dining $100/mo</div>
+              <div class="tl-val warn">Buy in 2 months</div>
+              <div class="tl-sub">Reduces dining to $180/mo — tight</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dp-section">
+          <div class="dp-label">Current Budget Snapshot</div>
+          <div class="prog-list">
+            <div class="prog-item">
+              <div class="prog-head"><span class="prog-name">Discretionary used</span><span class="prog-nums">$480 / $820</span></div>
+              <div class="prog-track"><div class="prog-fill warn-fill" style="width:58.5%"></div></div>
+            </div>
+            <div class="prog-item">
+              <div class="prog-head"><span class="prog-name">Emergency Fund</span><span class="prog-nums">$3,840 / $5,000</span></div>
+              <div class="prog-track"><div class="prog-fill" style="width:76.8%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dp-section">
+          <div class="dp-label">Wishlist — Parked Items</div>
+          <div class="wish-add-row">
+            <input class="wish-add-name" id="wish-name-input" placeholder="Item name…" type="text">
+            <input class="wish-add-price" id="wish-price-input" placeholder="$0" type="text">
+            <button class="wish-add-btn" onclick="addWishItem()">Park it</button>
+          </div>
+          <div id="wishlist-items">
+            <!-- rendered by JS -->
+          </div>
+        </div>
+      </div><!-- /dp-buy -->
+
+      <!-- ── WHAT IF DATA ── -->
+      <div class="mode-section" id="dp-what">
+        <div class="dp-section">
+          <div class="dp-label">Scenario Comparison</div>
+          <div class="scenario-grid">
+            <div class="sc-col">
+              <div class="sc-col-lbl">Current</div>
+              <div class="sc-row"><div class="sc-row-lbl">Retirement contrib.</div><div class="sc-row-val">$0 / mo</div></div>
+              <div class="sc-row"><div class="sc-row-lbl">Discretionary</div><div class="sc-row-val">$820 / mo</div></div>
+              <div class="sc-row"><div class="sc-row-lbl">20yr extra gain</div><div class="sc-row-val" style="color:var(--text-muted)">baseline</div></div>
+            </div>
+            <div class="sc-col sc-highlight">
+              <div class="sc-col-lbl">+$300 / mo</div>
+              <div class="sc-row"><div class="sc-row-lbl">Retirement contrib.</div><div class="sc-row-val" style="color:var(--accent)">$300 / mo</div></div>
+              <div class="sc-row"><div class="sc-row-lbl">Discretionary</div><div class="sc-row-val">$520 / mo</div></div>
+              <div class="sc-row"><div class="sc-row-lbl">20yr extra gain</div><div class="sc-row-val" style="color:var(--accent)">+$131k</div></div>
+            </div>
+          </div>
+          <div style="background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:10px;padding:12px;margin-top:2px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+              <span style="font-size:9px;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.1em;color:var(--text-muted)">Alt: +$500 / mo</span>
+              <span style="font-size:10px;font-family:var(--font-mono);color:var(--accent)">+$262k over 20yr</span>
+            </div>
+            <div style="font-size:11px;color:var(--text-muted)">Discretionary drops to <span style="font-family:var(--font-mono);color:var(--warn)">$320/mo</span> — very tight. 7% annualized assumed.</div>
+          </div>
+        </div>
+
+        <div class="dp-section">
+          <div class="dp-label">20-Year Growth Projection</div>
+          <div class="bar-chart">
+            <div class="bar-col">
+              <div class="bar-fill-wrap"><div class="bar-fill" style="height:18%"></div></div>
+              <div class="bar-lbl">Now</div>
+            </div>
+            <div class="bar-col">
+              <div class="bar-fill-wrap"><div class="bar-fill accent-bar" style="height:32%"></div></div>
+              <div class="bar-lbl">5yr</div>
+            </div>
+            <div class="bar-col">
+              <div class="bar-fill-wrap"><div class="bar-fill accent-bar" style="height:52%"></div></div>
+              <div class="bar-lbl">10yr</div>
+            </div>
+            <div class="bar-col">
+              <div class="bar-fill-wrap"><div class="bar-fill accent-bar" style="height:73%"></div></div>
+              <div class="bar-lbl">15yr</div>
+            </div>
+            <div class="bar-col">
+              <div class="bar-fill-wrap"><div class="bar-fill accent-bar top" style="height:100%"></div></div>
+              <div class="bar-lbl" style="color:var(--accent)">20yr</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;margin-top:4px">
+            <div class="leg-item"><div class="leg-dot" style="background:var(--border-soft)"></div>No change</div>
+            <div class="leg-item"><div class="leg-dot" style="background:var(--accent)"></div>+$300/mo scenario</div>
+          </div>
+        </div>
+
+        <div class="dp-section">
+          <div class="dp-label">Saved Scenarios</div>
+          <div class="nudge n-ok">
+            <svg class="nudge-ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            +$300/mo retirement — best balance of growth vs. lifestyle
+          </div>
+          <div class="nudge n-info">
+            <svg class="nudge-ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            Part-time work (&minus;30% income) — modeled Apr 18
+          </div>
+        </div>
+      </div><!-- /dp-what -->
+
+      <!-- ── DEBT DESTROYER DATA ── -->
+      <div class="mode-section" id="dp-debt">
+
+        <div class="dp-section">
+          <div class="dp-label">Payoff Strategy</div>
+          <div class="strategy-toggle">
+            <button class="strat-btn active" id="strat-avalanche" onclick="setStrategy('avalanche')">Avalanche</button>
+            <button class="strat-btn" id="strat-snowball" onclick="setStrategy('snowball')">Snowball</button>
+          </div>
+          <div class="debt-freedom-card">
+            <div class="dfc-label">Debt Freedom Date</div>
+            <div class="dfc-date" id="debt-freedom-date">March 2028</div>
+            <div class="dfc-stats">
+              <div class="dfc-stat">
+                <div class="dfc-stat-val pos" id="debt-interest-saved">$1,840</div>
+                <div class="dfc-stat-lbl">interest saved</div>
+              </div>
+              <div class="dfc-stat">
+                <div class="dfc-stat-val" id="debt-months-left">33 mo</div>
+                <div class="dfc-stat-lbl">remaining</div>
+              </div>
+              <div class="dfc-stat">
+                <div class="dfc-stat-val" id="debt-total-bal">$14,580</div>
+                <div class="dfc-stat-lbl">total balance</div>
+              </div>
+            </div>
+          </div>
+          <div class="extra-payment-row">
+            <span class="extra-lbl">Extra monthly payment</span>
+            <input class="extra-input" id="extra-payment" type="text" placeholder="$0" value="$200">
+            <button class="extra-apply-btn" onclick="applyExtraPayment()">Apply</button>
+          </div>
+        </div>
+
+        <div class="dp-section">
+          <div class="dp-label">Your Debts</div>
+          <div id="debt-card-list"><!-- rendered by JS --></div>
+        </div>
+
+        <div class="dp-section">
+          <div class="dp-label">Payoff Order</div>
+          <div class="timeline" id="debt-timeline"><!-- rendered by JS --></div>
+        </div>
+
+      </div><!-- /dp-debt -->
+
+      <!-- ── SUBSCRIPTION AUDITOR DATA ── -->
+      <div class="mode-section" id="dp-subs">
+
+        <!-- Section 1: Summary stats -->
+        <div class="dp-section">
+          <div class="dp-label">Overview</div>
+          <div class="stat-grid">
+            <div class="stat-card">
+              <div class="sc-label">Total Monthly</div>
+              <div class="sc-val" id="sub-stat-monthly">$212.43</div>
+              <div class="sc-sub">per month</div>
+            </div>
+            <div class="stat-card">
+              <div class="sc-label">Annual Burn</div>
+              <div class="sc-val neg" id="sub-stat-annual">$2,549</div>
+              <div class="sc-sub">per year</div>
+            </div>
+            <div class="stat-card">
+              <div class="sc-label">Subscriptions</div>
+              <div class="sc-val" id="sub-stat-count">8</div>
+              <div class="sc-sub">active</div>
+            </div>
+            <div class="stat-card">
+              <div class="sc-label">Could Cancel</div>
+              <div class="sc-val warn" id="sub-stat-flagged">0</div>
+              <div class="sc-sub">flagged</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Subscription cards -->
+        <div class="dp-section">
+          <div class="dp-label">Your Subscriptions</div>
+          <div id="sub-card-list">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Section 3: Savings summary -->
+        <div class="dp-section">
+          <div class="dp-label">Potential Savings</div>
+          <div class="savings-summary">
+            <div class="savings-main" id="sub-savings-monthly">$0.00/mo</div>
+            <div class="savings-sub">
+              If you cancel flagged items &middot; <span id="sub-savings-annual">$0/yr</span>
+            </div>
+            <div class="savings-items" id="sub-savings-items">
+              <div style="font-size:11px;color:var(--text-muted)">No subscriptions flagged yet</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /dp-subs -->
+
+    </div><!-- /data-panel -->
+
+  </div><!-- /main -->
+</div><!-- /app -->
+</div><!-- /layer-app -->
+
+<!-- ════════════════════════════════════════
+     WASTE LOG MODAL
+════════════════════════════════════════ -->
+<div id="waste-overlay" style="display:none" onclick="closeWasteLog()"></div>
+<div id="waste-modal" style="display:none">
+  <div class="waste-modal-handle"></div>
+
+  <div class="waste-modal-header">
+    <div class="waste-modal-title">What did you throw out?</div>
+    <div class="waste-modal-sub">Quick tap — takes under 20 seconds</div>
+  </div>
+
+  <!-- Category chips -->
+  <div class="waste-cat-label">Category</div>
+  <div class="waste-chips" id="waste-chips">
+    <button class="waste-chip" data-cat="produce" onclick="toggleWasteChip(this)">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0110 10c0 5.52-4.48 10-10 10S2 17.52 2 12"/><path d="M12 2C6.48 2 2 6.48 2 12"/><path d="M12 8v4l3 3"/></svg>
+      Produce
+    </button>
+    <button class="waste-chip" data-cat="dairy" onclick="toggleWasteChip(this)">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2h8l2 6H6L8 2z"/><path d="M6 8v12a2 2 0 002 2h8a2 2 0 002-2V8"/></svg>
+      Dairy
+    </button>
+    <button class="waste-chip" data-cat="meat" onclick="toggleWasteChip(this)">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+      Meat / Fish
+    </button>
+    <button class="waste-chip" data-cat="pantry" onclick="toggleWasteChip(this)">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 002 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+      Pantry / Dry
+    </button>
+    <button class="waste-chip" data-cat="leftovers" onclick="toggleWasteChip(this)">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+      Leftovers
+    </button>
+    <button class="waste-chip" data-cat="other" onclick="toggleWasteChip(this)">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+      Other
+    </button>
+  </div>
+
+  <!-- Amount row -->
+  <div class="waste-cat-label" style="margin-top:16px">Estimated value thrown out</div>
+  <div class="waste-amount-row">
+    <div class="waste-amount-presets">
+      <button class="waste-preset" onclick="setWasteAmount(5)">~$5</button>
+      <button class="waste-preset" onclick="setWasteAmount(10)">~$10</button>
+      <button class="waste-preset" onclick="setWasteAmount(20)">~$20</button>
+      <button class="waste-preset" onclick="setWasteAmount(35)">~$35</button>
+    </div>
+    <div class="waste-custom-wrap">
+      <span class="waste-dollar">$</span>
+      <input class="waste-amount-input" id="waste-amount-input" type="number" placeholder="0" min="0" max="999">
+    </div>
+  </div>
+
+  <!-- Note (optional) -->
+  <input class="waste-note-input" id="waste-note-input" type="text" placeholder="Optional note — e.g. 'spinach gone slimy'">
+
+  <!-- Action row -->
+  <div class="waste-modal-actions">
+    <button class="waste-cancel-btn" onclick="closeWasteLog()">Cancel</button>
+    <button class="waste-submit-btn" onclick="submitWasteLog()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      Log it
+    </button>
+  </div>
+</div>
+
+<script src="noor.js"></script>
+</body>
+</html>
