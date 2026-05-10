@@ -1,6 +1,6 @@
 # Noor — Personal Financial Clarity
 
-Noor (Arabic: *نور*, light/clarity) is a personal finance chat app that puts an AI advisor directly in your pocket. Six intelligent modes cover every angle of your financial life — from daily spending to debt payoff to subscription audits — all in one dark, minimal interface.
+Noor is a personal finance chat app that puts an AI advisor directly in your pocket. Six intelligent modes cover every angle of your financial life — from daily spending to debt payoff to subscription audits — all in one dark, minimal interface.
 
 No backend. No accounts. No tracking. Runs entirely in your browser.
 
